@@ -79,7 +79,7 @@ export function GamePlayer({ game }: { game: Game }) {
       if (
         event.origin !== window.location.origin ||
         event.source !== frameRef.current?.contentWindow ||
-        event.data.gameId !== game.id ||
+        event.data.gameId !== game.id
       ) {
         return;
       }

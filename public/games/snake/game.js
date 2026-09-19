@@ -8,6 +8,8 @@
   const scoreElement = document.querySelector("#score");
   const finalScoreElement = document.querySelector("#final-score");
   const gameOverElement = document.querySelector("#game-over");
+  const gameStartElement = document.querySelector("#game-start");
+  const startGameButton = document.querySelector("#start-game");
   const restartButton = document.querySelector("#restart");
   const playAgainButton = document.querySelector("#play-again");
 
@@ -17,6 +19,7 @@
   let queuedDirection;
   let score;
   let isGameOver;
+  let timerId;
 
   function samePosition(a, b) {
     return a.x === b.x && a.y === b.y;
@@ -48,8 +51,11 @@
     isGameOver = false;
     scoreElement.textContent = String(score);
     gameOverElement.hidden = true;
+    gameStartElement.hidden = true;
     notify("GAME_STARTED");
     draw();
+    if (timerId) window.clearInterval(timerId);
+    timerId = window.setInterval(tick, 118);
   }
 
   function setDirection(next) {
@@ -62,6 +68,7 @@
     finalScoreElement.textContent = `${score} Punkte`;
     gameOverElement.hidden = false;
     notify("GAME_OVER", { score });
+    if (timerId) window.clearInterval(timerId);
   }
 
   function tick() {
@@ -136,8 +143,16 @@
     }[control]);
   });
 
+  startGameButton.addEventListener("click", reset);
   restartButton.addEventListener("click", reset);
   playAgainButton.addEventListener("click", reset);
-  reset();
-  window.setInterval(tick, 118);
+  
+  // Initiale Anzeige ohne Start
+  snake = [
+    { x: 10, y: 10 },
+    { x: 9, y: 10 },
+    { x: 8, y: 10 },
+  ];
+  apple = randomApple();
+  draw();
 })();
