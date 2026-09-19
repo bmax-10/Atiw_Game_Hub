@@ -1,0 +1,17 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { display: grid; min-height: 100vh; place-items: center; margin: 0; color: #edf3e6; background: #161c13; font-family: Arial, Helvetica, sans-serif; }
+.game-shell { width: min(94vw, 680px); }
+.hud { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 15px; }
+.hud div { display: flex; align-items: baseline; gap: 9px; }
+.hud span, .hint { color: #a8b39e; font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.hud strong { color: #b6f544; font-family: monospace; font-size: 23px; }
+button { padding: 8px 12px; border: 1px solid #bfccaf; border-radius: 6px; color: #edf3e6; background: transparent; font-weight: 800; cursor: pointer; }
+button:hover { color: #172012; background: #b6f544; }
+.canvas-wrap { position: relative; overflow: hidden; border: 1px solid #4d5b43; background: #20291d; box-shadow: 0 10px 28px rgb(0 0 0 / 25%); }
+canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.game-over { position: absolute; inset: 0; display: grid; place-content: center; gap: 15px; text-align: center; background: rgb(14 18 12 / 82%); }
+.game-over p { margin: 0; color: #b6f544; font-family: monospace; font-size: clamp(28px, 7vw, 55px); font-weight: 900; letter-spacing: -.1em; }
+.game-over strong { font-size: 16px; }
+.game-over button { justify-self: center; border-color: #b6f544; }
+.hint { margin: 15px 0 0; text-align: center; }
