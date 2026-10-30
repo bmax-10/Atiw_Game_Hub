@@ -1,0 +1,245 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { 
+  margin: 0; 
+  color: #edf3e6; 
+  background: #161c13; 
+  font-family: Arial, Helvetica, sans-serif; 
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+[hidden] { display: none !important; }
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #20291d;
+  border-bottom: 1px solid #4d5b43;
+}
+.brand { font-size: 18px; margin: 0; color: #b6f544; }
+.balance-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #161c13;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.end-btn {
+  background: transparent;
+  color: #b6f544;
+  border: 1px solid #b6f544;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.end-btn:hover {
+  background: #b6f544;
+  color: #161c13;
+}
+
+/* Main Keno Area */
+.keno-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  align-items: center;
+  position: relative;
+}
+.keno-topinfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+  color: #a8b39e;
+  margin-bottom: 15px;
+}
+.picks-count { color: #b6f544; font-weight: bold; }
+
+/* Keno Grid */
+.keno-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.keno-cell {
+  background: #20291d;
+  border: 1px solid #4d5b43;
+  border-radius: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+}
+.keno-cell:hover { background: #303d2b; }
+.keno-cell.selected { background: #8b5cf6; border-color: #7c3aed; color: white; }
+.keno-cell.hit { background: #b6f544; border-color: #84cc16; color: #161c13; transform: scale(1.1); z-index: 2; box-shadow: 0 0 10px rgba(182, 245, 68, 0.5); }
+.keno-cell.miss-draw { background: #334155; border-color: #475569; color: #94a3b8; }
+
+/* Paytable Strip */
+.paytable-strip {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+.pt-chip {
+  background: #111;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 60px;
+}
+.pt-hits { font-size: 10px; color: #a8b39e; }
+.pt-mult { font-size: 14px; font-weight: bold; color: #b6f544; }
+
+/* Risk and Tools */
+.keno-result {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  min-height: 24px;
+}
+.keno-result.win { color: #b6f544; }
+.keno-result.loss { color: #e74c3c; }
+
+.risk-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.risk-btn {
+  background: #20291d;
+  color: #a8b39e;
+  border: 1px solid #4d5b43;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.risk-btn.active { background: #8b5cf6; color: white; border-color: #7c3aed; }
+
+.keno-tools {
+  display: flex;
+  gap: 10px;
+}
+.keno-tools button {
+  background: #20291d;
+  color: #edf3e6;
+  border: 1px solid #4d5b43;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Bet Bar */
+.bet-bar {
+  background: #111;
+  padding: 10px;
+}
+.bet-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.bet-field label { font-size: 12px; color: #a8b39e; display: block; margin-bottom: 4px; }
+.bet-field input { 
+  background: #20291d; 
+  border: 1px solid #4d5b43; 
+  color: white; 
+  padding: 8px; 
+  border-radius: 4px; 
+  width: 100px;
+  font-size: 16px;
+}
+.deal-btn {
+  padding: 12px 24px;
+  background: #b6f544;
+  color: #161c13;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chip-row {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+.chip-btn {
+  background: #20291d;
+  color: white;
+  border: 1px solid #4d5b43;
+  padding: 6px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.chip-btn.ctrl { background: #333; }
+.chip-btn.warn { background: #e74c3c; border-color: #c0392b; }
+
+/* Win Popup */
+.win-popup {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 50;
+}
+.win-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -60%);
+}
+
+.win-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background: rgba(14, 18, 12, 0.9);
+  z-index: 100;
+}
+.win-card {
+  text-align: center;
+  background: #20291d;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #b6f544;
+}
+.win-emoji { font-size: 40px; margin-bottom: 10px; }
