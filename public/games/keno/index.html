@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Keno</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#0f212e" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Keno" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<link rel="icon" href="icon-192.png" />
+<link rel="stylesheet" href="../shared/shared.css" />
+</head>
+<body>
+<header class="topbar safe-top">
+  <a class="back-btn" href="#" aria-label="Zurück" title="Score speichern & Beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></a>
+  <h1 class="brand">Keno</h1>
+  <div class="balance-pill"><span class="coin" id="coinIcon"></span><span id="balanceDisplay">0</span></div>
+</header>
+<main class="keno-main">
+  <div class="win-popup" id="winPopup"></div>
+  <div class="keno-topinfo"><span>Gewählt: <span class="picks-count" id="pickCount">0</span>/10</span><span id="drawInfo">10 von 40 werden gezogen</span></div>
+  <div class="keno-grid" id="kenoGrid"></div>
+  <div class="paytable-strip" id="paytableStrip"></div>
+  <div class="keno-result" id="kenoResult">Wähle 1–10 Zahlen</div>
+  <div class="risk-row" id="riskRow">
+    <button class="risk-btn active" data-risk="classic">Classic</button>
+    <button class="risk-btn" data-risk="low">Low</button>
+    <button class="risk-btn" data-risk="medium">Medium</button>
+    <button class="risk-btn" data-risk="high">High</button>
+  </div>
+  <div class="keno-tools"><button id="autoPickBtn">🎲 Auto</button><button id="clearBtn">✕ Leeren</button><button id="menuBtn">👑 VIP</button></div>
+</main>
+<section class="bet-bar safe-bottom">
+  <div class="bet-row"><div class="bet-field"><label>EINSATZ</label><input type="number" id="betInput" inputmode="numeric" value="25" min="1" /></div><button class="deal-btn" id="playBtn">SPIELEN</button></div>
+  <div class="chip-row">
+    <button class="chip-btn" data-add="5">+5</button>
+    <button class="chip-btn" data-add="25">+25</button>
+    <button class="chip-btn" data-add="100">+100</button>
+    <button class="chip-btn" data-add="500">+500</button>
+    <button class="chip-btn" data-add="2500">+2.5K</button>
+    <button class="chip-btn ctrl" id="halveBtn">½</button>
+    <button class="chip-btn ctrl" id="doubleBtn">2×</button>
+    <button class="chip-btn ctrl" id="maxBtn">MAX</button>
+    <button class="chip-btn ctrl warn" id="clrBetBtn">CLR</button>
+  </div>
+</section>
+<div class="win-overlay" id="levelOverlay" hidden><div class="win-card"><div class="win-emoji" id="levelEmoji">🎉</div><h2 id="levelTitle">Level-Up!</h2><p id="levelText"></p><button class="deal-btn" id="levelClose">Weiter</button></div></div>
+<div class="win-overlay" id="winOverlay" hidden><div class="win-card"><div class="win-emoji">🏆</div><h2>Diamond erreicht!</h2><p>Du hast 5.000.000 Chips geknackt.</p><button class="deal-btn" id="winClose">Weiterspielen</button></div></div>
+<script src="../shared/shared.js"></script>
+<script src="../shared/vippanel.js"></script>
+<script src="keno.js"></script>
+<script>
+  const coinEl = document.getElementById("coinIcon");
+  if (coinEl) coinEl.innerHTML = diamondSVG(15);
+</script>
+</body>
+</html>

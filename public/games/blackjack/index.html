@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Blackjack</title>
+
+<!-- PWA -->
+<meta name="theme-color" content="#0f212e" />
+<link rel="stylesheet" href="../shared/shared.css" />
+</head>
+<body>
+
+<!-- Top-Bar -->
+<header class="topbar safe-top">
+  <a class="back-btn" href="#" aria-label="Zurück" title="Score speichern & Beenden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Menü">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <h1 class="brand">Blackjack</h1>
+  <div class="balance-pill">
+    <span class="coin" id="coinIcon"></span>
+    <span id="balanceDisplay">0</span>
+  </div>
+</header>
+
+<!-- Spielfeld -->
+<main class="table">
+  <div class="win-popup" id="winPopup"></div>
+  <!-- Dealer Zone -->
+  <section class="zone dealer-zone">
+    <div class="zone-label">
+      <span>DEALER</span>
+      <span id="dealerValue" class="value-badge"></span>
+    </div>
+    <div class="cards-row" id="dealerCards"></div>
+  </section>
+
+  <!-- Pot -->
+  <section class="pot-zone">
+    <div class="pot-label">POT</div>
+    <div class="pot-amount" id="potAmount"></div>
+  </section>
+
+  <!-- Player Zone -->
+  <section class="zone player-zone">
+    <div class="player-hands" id="playerHands"></div>
+    <div class="zone-label bottom-label">
+      <span>DU</span>
+      <span id="playerActive" class="value-badge"></span>
+    </div>
+  </section>
+
+  <!-- Deck-Marker (rechts oben) -->
+  <div class="deck-marker" id="deckMarker">
+    <div class="mini-card"></div>
+    <div class="mini-card"></div>
+    <div class="mini-card"></div>
+  </div>
+
+  <!-- Fliegende Karten & Chips landen hier -->
+  <div class="fly-layer" id="flyLayer" aria-hidden="true"></div>
+
+  <!-- Nachricht -->
+  <div class="message" id="message">Setze deinen Einsatz und tippe BET</div>
+</main>
+
+<!-- Aktion Buttons -->
+<section class="actions" id="actionButtons">
+  <button class="act-btn" data-act="hit">Hit</button>
+  <button class="act-btn" data-act="stand">Stand</button>
+  <button class="act-btn" data-act="double">Double</button>
+  <button class="act-btn" data-act="split">Split</button>
+  <button class="act-btn small" data-act="surrender">Surr</button>
+  <button class="act-btn small" data-act="insurance">Ins</button>
+</section>
+
+<!-- Einsatz-Leiste -->
+<section class="bet-bar safe-bottom">
+  <div class="bet-row">
+    <div class="bet-field">
+      <label>EINSATZ</label>
+      <input type="number" id="betInput" inputmode="numeric" value="25" min="1" />
+    </div>
+    <button class="deal-btn" id="dealBtn">BET</button>
+  </div>
+  <div class="chip-row">
+    <button class="chip-btn" data-add="5">+5</button>
+    <button class="chip-btn" data-add="25">+25</button>
+    <button class="chip-btn" data-add="100">+100</button>
+    <button class="chip-btn" data-add="500">+500</button>
+    <button class="chip-btn" data-add="2500">+2.5K</button>
+    <button class="chip-btn ctrl" id="halveBtn">½</button>
+    <button class="chip-btn ctrl" id="doubleBtn">2×</button>
+    <button class="chip-btn ctrl" id="maxBtn">MAX</button>
+    <button class="chip-btn ctrl warn" id="clrBtn">CLR</button>
+  </div>
+</section>
+
+<!-- Win-Overlay -->
+<div class="win-overlay" id="winOverlay" hidden>
+  <div class="win-card">
+    <div class="win-emoji">🏆</div>
+    <h2>Diamond erreicht!</h2>
+    <p>Du hast 5.000.000 Chips geknackt.<br/>Das Spiel ist offiziell gewonnen.</p>
+    <button class="deal-btn" id="winClose">Weiterspielen</button>
+  </div>
+</div>
+
+<!-- Level-Up-Overlay -->
+<div class="win-overlay" id="levelOverlay" hidden>
+  <div class="win-card">
+    <div class="win-emoji" id="levelEmoji">🎉</div>
+    <h2 id="levelTitle">Level-Up!</h2>
+    <p id="levelText"></p>
+    <button class="deal-btn" id="levelClose">Weiter</button>
+  </div>
+</div>
+
+<script src="../shared/shared.js"></script>
+<script src="../shared/vippanel.js"></script>
+<script src="blackjack.js"></script>
+</body>
+</html>
