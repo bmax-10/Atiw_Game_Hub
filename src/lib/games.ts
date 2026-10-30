@@ -43,3 +43,4 @@ export const games: Game[] = [
 export function getGame(gameId: string) {
   return games.find((game) => game.id === gameId);
 }
+
